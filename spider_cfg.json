@@ -1,0 +1,24 @@
+{
+    "driver_settings":{
+        "browser_executable_path":"/opt/chrome/chrome-linux64/chrome",
+        "driver_executable_path":"/opt/chrome/chromedriver-linux64/chromedriver"
+    },
+    "plans": [
+        {
+            "name": "plan0",
+            "init_url": "https://www.who.int",
+            "variable_names": "[]",
+            "setup_js_code": "",
+            "interval_js_code":"",
+            "break_flag_js_code": "return document.pause_flag;",
+            "query_condition_js_code": "return document.datas.length",
+            "final_js_code": "return document.datas;",
+            "variables_value_in_interval_py_code": "[{}]",
+            "pre_run_py_code": "import time;import os;import json;",
+            "final_run_py_code": "f=open(f\"./out_data/out_{plan['name']}_{int(time.time())}.json\",'w',encoding='utf-8');json.dump(final_query,f);f.close();",
+            "except_run_py_code": "print(\"ERROR\")",
+            "interval_py_code": "1",
+            "waiting_interval_py_code": "print(f\"running, step:{query_result}          \\r\",end=\"\")"
+        }
+    ]
+}
